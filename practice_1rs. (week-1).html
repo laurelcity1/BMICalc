@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>BMI Calculator</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        color: #333;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+      }
+      header {
+        background-color: #e63946;
+        color: white;
+        padding: 20px;
+      }
+      h1, h2 {
+        margin: 0;
+      }
+      form {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 400px;
+        margin: 20px auto;
+      }
+      label {
+        display: block;
+        margin-bottom: 10px;
+      }
+      input, select {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+      }
+      button {
+        background-color: #e63946;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+      }
+      button:hover {
+        background-color: #d62828;
+      }
+      #result {
+        margin-top: 20px;
+        font-size: 18px;
+        font-weight: bold;
+      }
+      footer {
+        margin-top: 20px;
+        color: #777;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>BMI Calculator</h1>
+    </header>
+    
+    <form>
+      <label>
+        Units:
+        <select name="units">
+          <option value="metric">Metric System (kg/m)</option>
+          <option value="imperial">Imperial System (lb/in)</option>
+        </select>
+      </label>
+      <label>
+        Weight:
+        <input type="number" name="weight" step="any" placeholder="Enter your weight" required>
+      </label>
+      <label>
+        Height:
+        <input type="number" name="height" step="any" placeholder="Enter your height" required>
+      </label>
+      <button type="submit">Calculate BMI</button>
+    </form>
+    
+    <div id="result"></div>
+
+    <body>
+        <br> <br>
+        <intro style="background-color:rgb(104, 24, 24);"></intro>
+        The BMI, Body Mass Index, is a measure of body fat obtainable by calculations using an individual's height and weight.
+        <br> <br>
+        This is significant in the medical field as growing health conditions of obesity and malnourishment and enable the population of the nation is healthy.
+        <br>
+        As such, doctors usually ask patients with chest or joint problems for their BMI to know how to fix the problem; be it a diet or the gym.
+        <br> 
+        Maintaining a healthy weieght is important to the heart health.
+        <br>
+        However, please note that the BMI is an imperfect measure of healthy body weight.
+        <br> <br>
+        <a href="https://www.webmd.com/diet/features/bmi-drawbacks-and-other-measurements">For more information, please click this link</a>
+    </body>
+
+    <footer>
+      <p>&copy; BMI Calculator Website by EDET, Eti-Abasi-Laurel </p>
+    </footer>
+
+    <script>
+      const form = document.querySelector('form');
+      const resultDiv = document.querySelector('#result');
+
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const units = form.elements.units.value;
+        const weight = Number(form.elements.weight.value);
+        const height = Number(form.elements.height.value);
+
+        let bmi = units === 'metric' ? weight / (height ** 2) : (weight * 703) / (height ** 2);
+
+        let message = bmi < 18.5 ? "You are underweight. Gain some fat" : 
+                      bmi < 25 ? "Very Good! You are healthy" : 
+                      bmi < 30 ? "Hmmmm! You are overweight!" : 
+                      "Not good!!! You are obese, urgently seek medical attention";
+        
+        resultDiv.textContent = `Your BMI is ${bmi.toFixed(1)}. ${message}.`;
+      });
+
+    </script>
+  </body>
+</html>
